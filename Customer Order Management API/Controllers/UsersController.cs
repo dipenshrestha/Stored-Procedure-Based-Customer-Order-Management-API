@@ -32,7 +32,7 @@ namespace Customer_Order_Management_API.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        [Route("authenticate")]
+        [Route("Login")]
         public IActionResult Authenticate(Users userdata)
         {
             var token = _jWTManager.Authenticate(userdata);
@@ -44,6 +44,7 @@ namespace Customer_Order_Management_API.Controllers
 
             return Ok(token);
         }
+
     }
 
 }

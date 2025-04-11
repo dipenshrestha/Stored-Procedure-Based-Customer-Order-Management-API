@@ -7,7 +7,6 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Customer_Order_Management_API.Controllers.Productions
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
