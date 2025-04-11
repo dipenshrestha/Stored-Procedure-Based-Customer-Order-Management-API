@@ -1,11 +1,13 @@
 using Customer_Order_Management_API.IRepository;
 using Customer_Order_Management_API.IRepository.Productions;
 using Customer_Order_Management_API.IRepository.Sales;
+using Customer_Order_Management_API.Middleware;
 using Customer_Order_Management_API.Repository;
 using Customer_Order_Management_API.Repository.Productions;
 using Customer_Order_Management_API.Repository.Sales;
 using DapperAPI.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
@@ -60,7 +62,7 @@ builder.Services.AddSwaggerGen(options =>
                     Id = "Bearer"
                 }
             },
-            new string[] {}
+            Array.Empty<string>()
         }
     });
 });
@@ -83,7 +85,17 @@ builder.Services.AddScoped<IStocksRepository, StocksRepository>();
 //for jwt
 builder.Services.AddScoped<IJWTManagerRepository, JWTManagerRepository>();
 
+// Add global authorization filter
+builder.Services.AddMvc(options =>
+{
+    options.Filters.Add(new AuthorizeFilter());
+});
+
 var app = builder.Build();
+
+//middleware 
+app.UseMiddleware<BearerTokenMiddleware>();
+
 
 //middle wares , sequential execution
 // Configure the HTTP request pipeline.
@@ -98,8 +110,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
+
 
 app.MapControllers();
 
