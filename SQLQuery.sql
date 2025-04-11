@@ -93,7 +93,7 @@ CREATE TABLE sales.order_items(
 	quantity INT NOT NULL,
 	list_price DECIMAL (10, 2) NOT NULL,
 	discount DECIMAL (4, 2) NOT NULL DEFAULT 0,
-	PRIMARY KEY (order_id, item_id),
+	PRIMARY KEY (order_id, item_id),  --Composite Primary Key
 	FOREIGN KEY (order_id) 
         REFERENCES sales.orders (order_id) 
         ON DELETE CASCADE ON UPDATE CASCADE,
@@ -106,7 +106,7 @@ CREATE TABLE production.stocks (
 	store_id INT,
 	product_id INT,
 	quantity INT,
-	PRIMARY KEY (store_id, product_id),
+	PRIMARY KEY (store_id, product_id),  --Composite Primary Key
 	FOREIGN KEY (store_id) 
         REFERENCES sales.stores (store_id) 
         ON DELETE CASCADE ON UPDATE CASCADE,

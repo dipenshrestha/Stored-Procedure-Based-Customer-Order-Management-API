@@ -1,11 +1,13 @@
 ﻿using Customer_Order_Management_API.IRepository.Productions;
 using Customer_Order_Management_API.Models.Productions;
 using Customer_Order_Management_API.Models.sales;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Customer_Order_Management_API.Controllers.Productions
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class BrandsController : ControllerBase
