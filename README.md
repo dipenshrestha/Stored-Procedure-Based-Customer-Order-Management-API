@@ -33,6 +33,7 @@ This repository provides SQL scripts to:
 7. **Implementation**
    - Implemented the above in ASP.NET CORE
    - Dapper ORM is used
+   - JWT Authentication used for each api endpoints
 
 ---
 
