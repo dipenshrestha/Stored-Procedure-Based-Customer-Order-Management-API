@@ -34,6 +34,7 @@ This repository provides SQL scripts to:
    - Implemented the above in ASP.NET CORE
    - Dapper ORM is used
    - JWT Authentication used for each api endpoints
+   - to send custom names (different from model property names) from an API to the frontend in ASP.NET Core, i have used JSON serialization attributes like [JsonPropertyName] from System.Text.Json.
 
 ---
 
